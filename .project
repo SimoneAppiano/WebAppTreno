@@ -3,7 +3,7 @@
 	<name>WebAppTrenoFinale</name>
 	<comment></comment>
 	<projects>
-		<project>Treno</project>
+		<project>OldV_Treno</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
