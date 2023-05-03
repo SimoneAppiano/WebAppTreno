@@ -32,11 +32,12 @@ import treno.Treno;
 public class HomeController {
 
 	// modifica da cancellare
+	
 	@RequestMapping(path = "/")
 	public String home() {
 		return "Home";
 	}
-
+	//ciao sto bene
 	@GetMapping(path = "/hello")
 	public String hello() {
 		return "hello";
