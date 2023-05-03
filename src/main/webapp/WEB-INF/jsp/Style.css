@@ -126,6 +126,10 @@ button:hover{
   font-size: 17px;
 }
 
+  .topnav #user {
+	 float: right;
+}
+
 .topnav a:hover {
   background-color: #ddd;
   color: black;
@@ -160,4 +164,5 @@ button:hover{
     display: block;
     text-align: left;
   }
+
 }
