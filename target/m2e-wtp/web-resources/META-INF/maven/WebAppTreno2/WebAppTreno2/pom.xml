@@ -227,14 +227,6 @@
     <version>5.0.0</version>
 </dependency> 
   <!-- fine query DSL -->
-
-
-
-  <dependency>
-  	<groupId>corso.spring.jpa</groupId>
-  	<artifactId>CorsoTD</artifactId>
-  	<version>1.0</version>
-  </dependency>
   </dependencies>
   
   <build>

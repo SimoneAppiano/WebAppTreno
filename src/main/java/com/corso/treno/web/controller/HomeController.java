@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import builder.TrenoBuilder;
 import builder.TN.TNBuilder;
 import dao.*;
-import daoImpl.*;
+import daoImpl.TrenoDaoImpl;
+import daoImpl.UtenteDaoImpl;
 import dto.TrenoDTO;
-import dto.UtenteDTO;
 import exception.Errori;
 import treno.Treno;
 
@@ -74,7 +74,7 @@ public class HomeController {
 
 		UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
 
-		if (utenteDAO.findByUsernameEPassword(username,password) != null ) {
+		if (utenteDAO.findByUsernameEPassword(username,password)) {
 			model.addAttribute("username", username);
 			request.getSession().setAttribute(username, username);
 			System.out.println(utenteDAO.findByUsername(username));
