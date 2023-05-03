@@ -31,7 +31,7 @@ import treno.Treno;
 @Controller
 public class HomeController {
 
-	//prova
+	//provaprovaprova
 	
 	@RequestMapping(path = "/")
 	public String home() {
