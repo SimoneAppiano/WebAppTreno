@@ -31,7 +31,7 @@ import treno.Treno;
 @Controller
 public class HomeController {
 
-	// modifica da cancellare
+	//proviamo git
 	@RequestMapping(path = "/")
 	public String home() {
 		return "Home";
