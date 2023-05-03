@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+<%@ include file = "Style.css"%>
+</style>
 <title>Insert title here</title>
 </head>
 <body>
