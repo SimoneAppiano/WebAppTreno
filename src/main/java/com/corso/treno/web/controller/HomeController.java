@@ -74,7 +74,7 @@ public class HomeController {
 
 		UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
 
-		if (utenteDAO.findByUsernameEPassword(username,password) != null ) {
+		if (utenteDAO.findByUsernameEPassword(username,password)) {
 			model.addAttribute("username", username);
 			request.getSession().setAttribute(username, username);
 			System.out.println(utenteDAO.findByUsername(username));
