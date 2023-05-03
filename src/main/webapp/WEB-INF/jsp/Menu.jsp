@@ -17,6 +17,7 @@
   <a href="treni">Lista treni</a>
   <a href="CreazioneTreno">Crea Treno</a>
   <a href="#about">About</a>
+  <a id="user" href="/treno"><i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username} </a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
