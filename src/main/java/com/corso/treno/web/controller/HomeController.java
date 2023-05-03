@@ -67,7 +67,7 @@ public class HomeController {
 			return "erroreRegistrazione";
 		}
 		
-
+//prova
 	}
 
 	@RequestMapping(path = "/login")
