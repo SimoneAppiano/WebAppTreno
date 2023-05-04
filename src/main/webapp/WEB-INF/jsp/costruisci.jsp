@@ -18,8 +18,10 @@
 <H1>Treno ${sigla} ${errore} </H1>
 
 
-    
- ${trenoSigla}
+  <div class="treno-container">
+  ${trenoSigla}
+  </div>  
+ 
 
 
 </body>
