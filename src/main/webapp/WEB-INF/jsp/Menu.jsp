@@ -13,25 +13,29 @@
 <body onload = myFunction1()>
 <!--  navbar -->
 <%request.getSession().setAttribute("username", request.getParameter("username"));
-request.getSession().setAttribute("flag", request.getParameter("flag"));
-String username;
-username = request.getParameter("username");
-boolean flag = true;
+request.getSession().getAttribute("listaTreni");
 %>
 <div class="topnav" id="myTopnav">
   <a href="#home" class="active"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
+
   <template>
   <a href="treni">Lista treni</a>
   <a href="CreazioneTreno">Crea Treno</a>
   </template>
+  <a href="about">About</a>
   <a id="user" href="Home"><i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username} </a>
+
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
 </div>
+
 <a hidden = "true">
 <input id="flag" name="prova" value="${flag}"></input>
 </a>
+<h1>Ultimi 5 treni creati dai nostri utenti</h1>
+${trenoSigla}
+
 <script>
 function myFunction() {
   var x = document.getElementById("myTopnav");
