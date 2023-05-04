@@ -136,7 +136,7 @@ public class HomeController {
 				model.addAttribute("siglaSuggerita",e1.siglaSuggerita(sigla));
 		}
 		
-		return "costruisci";
+		return "CreazioneTreno";
 	}
 	
 	
