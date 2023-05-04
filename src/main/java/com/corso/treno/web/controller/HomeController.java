@@ -44,22 +44,11 @@ public class HomeController {
 		return "Home";
 	}
 
-	// ciao a tutti
-	// ciao sto bene
-	@GetMapping(path = "/hello")
-	public String hello() {
-		return "hello";
-	}
-
-	@RequestMapping(path = "/altraprova")
-	public String altraprova() {
-		return "altraprova";
-	}
-
 	@RequestMapping(path = "/about")
 	public String about() {
 		return "about";
 	}
+
 
 	@RequestMapping(path = "/CreazioneTreno")
 	public String altraprova1() {
@@ -68,41 +57,52 @@ public class HomeController {
 
 	@RequestMapping(path = "/register")
 	public String register(@WebParam String username, @WebParam String password, Model model) {
-
+		int flag=0;
 		UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
+		model.addAttribute("Registrato", "Utente Registrato con Successo");
+		model.addAttribute("erroreRegister", "Utente gia' registrato");
 		try {
 			utenteDAO.add(username, password);
 			model.addAttribute("username", username);
-			model.addAttribute("password", password);
-			return "Register";
-		} catch (Exception e) {
-			model.addAttribute("erroreRegister", e.getMessage());
-			return "erroreRegistrazione";
+			model.addAttribute("password", password);	
+			flag=1;
+			model.addAttribute("flag",flag);
+		return "Home";
+		}
+		catch (Exception e) {
+			e.getMessage();
+			flag=2;
+			model.addAttribute("flag",flag);
+			return "Home";
+
 		}
 
 	}
 
 	@RequestMapping(path = "/login")
-	public String login(@WebParam String username, @WebParam String password, Model model, HttpServletRequest request) {
-
+	public String login(@WebParam String username, @WebParam String password, Model model,HttpServletRequest request) {
+		int flagLogin=0;
 		UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
-
+		
+		model.addAttribute("erroreLogin", "Utente non registrato");
 		int flag = 1;
-		if (utenteDAO.findByUsernameEPassword(username, password)) {
+		if (utenteDAO.findByUsernameEPassword(username,password)) {
 			model.addAttribute("flag", flag);
 
 			model.addAttribute("username", username);
 			request.getSession().setAttribute(username, username);
 			System.out.println(utenteDAO.findByUsername(username));
 			return "Menu";
-		} else
-			return "loginfallito";
-	}
+		} else {
+			flagLogin=1;
+			model.addAttribute("flagLogin", flagLogin);
+			return "Home";
+		}
+			}
 
-	@RequestMapping(path = "/registrazioneeffettuata")
-	public String registrazioneeffettuata() {
-		return "logineffettuato";
-	}
+
+
+
 
 	@RequestMapping(path = "/Menu")
 	public String Menu(@WebParam String username, Model model, HttpServletRequest request) {
@@ -115,6 +115,7 @@ public class HomeController {
 		model.addAttribute("flag", flag);
 		return "Menu";
 	}
+
 
 	@RequestMapping(path = "/costruisci")
 	public String costruisci(@WebParam String sigla, Model model, HttpServletRequest request) throws IOException {
