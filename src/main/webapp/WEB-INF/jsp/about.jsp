@@ -11,10 +11,13 @@
 <title>About</title>
 </head>
 <body>
+ <%request.getSession().getAttribute("listaTreni");%>
 <!--  navbar -->
 <nav>
 <div class="topnav" id="myTopnav">
+
   <a href="Home " class="active"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
+
   <a href="treni">Lista treni</a>
   <a href="CreazioneTreno">Crea Treno</a>
   <a href="about">About</a>
@@ -23,6 +26,7 @@
     <i class="fa fa-bars"></i>
   </a>
 </div>
+
 <%request.getSession().setAttribute("username", request.getParameter("username")); %>
   
 <script>

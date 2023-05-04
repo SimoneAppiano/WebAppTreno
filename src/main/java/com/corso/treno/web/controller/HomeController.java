@@ -35,6 +35,49 @@ public class HomeController {
 	@RequestMapping(path = "/")
 	public String boh(Model model) {
 		int flag = 0;
+		int j = 0;
+		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
+
+		List<TrenoDTO> listaTreniUtente = new ArrayList<>();
+		List<String> trenoSigla = new LinkedList<String>();
+
+		String locomotiva = "<img class='main-treno' src='./img/locomotivaV.png' width='150'>";
+		String passeggeri = "<img class='main-treno' src='./img/passeggeriV.png' width='150'>";
+		String ristorante = "<img class='main-treno' src='./img/ristoranteV.png' width='150' >";
+		String cargo = "<img class='main-treno' src='./img/cargoV.png' width='150'>";
+
+		for (TrenoDTO t : trenoDAO.listaTreni()) {
+			if (j == 5)
+				break;
+				for (int i = 0; i < t.getSigla().length(); i++) {
+					List<String> sigla = new LinkedList<String>();
+					switch (t.getSigla().charAt(i)) {
+					case 'H':
+						trenoSigla.add("<p id='lt'>" + t.getSigla() + "</p>");
+						trenoSigla.add("<br>");
+						trenoSigla.add(locomotiva);
+						break;
+					case 'P':
+						trenoSigla.add(passeggeri);
+						break;
+					case 'R':
+						trenoSigla.add(ristorante);
+						break;
+					case 'C':
+						trenoSigla.add(cargo);
+						break;
+					}
+
+					listaTreniUtente.add(t);
+
+				}
+
+				trenoSigla.add("<br>");
+				j++;
+		}
+
+		model.addAttribute("trenoSigla", prova(trenoSigla));
+		model.addAttribute("listaTreni", listaTreniUtente);
 		model.addAttribute("flag", flag);
 		return "Menu";
 	}
@@ -44,22 +87,11 @@ public class HomeController {
 		return "Home";
 	}
 
-	// ciao a tutti
-	// ciao sto bene
-	@GetMapping(path = "/hello")
-	public String hello() {
-		return "hello";
-	}
-
-	@RequestMapping(path = "/altraprova")
-	public String altraprova() {
-		return "altraprova";
-	}
-
 	@RequestMapping(path = "/about")
 	public String about() {
 		return "about";
 	}
+
 
 	@RequestMapping(path = "/CreazioneTreno")
 	public String altraprova1() {
@@ -68,45 +100,102 @@ public class HomeController {
 
 	@RequestMapping(path = "/register")
 	public String register(@WebParam String username, @WebParam String password, Model model) {
-
+		int flag=0;
 		UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
+		model.addAttribute("Registrato", "Utente Registrato con Successo");
+		model.addAttribute("erroreRegister", "Utente gia' registrato");
 		try {
 			utenteDAO.add(username, password);
 			model.addAttribute("username", username);
-			model.addAttribute("password", password);
-			return "Register";
-		} catch (Exception e) {
-			model.addAttribute("erroreRegister", e.getMessage());
-			return "erroreRegistrazione";
+			model.addAttribute("password", password);	
+			flag=1;
+			model.addAttribute("flag",flag);
+		return "Home";
+		}
+		catch (Exception e) {
+			e.getMessage();
+			flag=2;
+			model.addAttribute("flag",flag);
+			return "Home";
+
 		}
 
 	}
 
 	@RequestMapping(path = "/login")
 	public String login(@WebParam String username, @WebParam String password, Model model, HttpServletRequest request) {
-
+		int j = 0;
 		UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
+		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
+		List<TrenoDTO> listaTreniUtente = new ArrayList<>();
+		List<String> trenoSigla = new LinkedList<String>();
 
+		String locomotiva = "<img class='main-treno' src='./img/locomotivaV.png' width='150'>";
+		String passeggeri = "<img class='main-treno' src='./img/passeggeriV.png' width='150'>";
+		String ristorante = "<img class='main-treno' src='./img/ristoranteV.png' width='150' >";
+		String cargo = "<img class='main-treno' src='./img/cargoV.png' width='150'>";
+
+		for (TrenoDTO t : trenoDAO.listaTreni()) {
+			if (j == 5)
+				break;
+				for (int i = 0; i < t.getSigla().length(); i++) {
+					List<String> sigla = new LinkedList<String>();
+					switch (t.getSigla().charAt(i)) {
+					case 'H':
+						trenoSigla.add("<p id='lt'>" + t.getSigla() + "</p>");
+						trenoSigla.add("<br>");
+						trenoSigla.add(locomotiva);
+						break;
+					case 'P':
+						trenoSigla.add(passeggeri);
+						break;
+					case 'R':
+						trenoSigla.add(ristorante);
+						break;
+					case 'C':
+						trenoSigla.add(cargo);
+						break;
+					}
+
+					listaTreniUtente.add(t);
+
+				}
+
+				trenoSigla.add("<br>");
+				j++;
+		}
+
+		model.addAttribute("trenoSigla", prova(trenoSigla));
+		model.addAttribute("listaTreni", listaTreniUtente);
+
+		int flagLogin=0;
+		model.addAttribute("erroreLogin", "Utente non registrato");
 		int flag = 1;
-		if (utenteDAO.findByUsernameEPassword(username, password)) {
+		if (utenteDAO.findByUsernameEPassword(username,password)) {
 			model.addAttribute("flag", flag);
 
 			model.addAttribute("username", username);
 			request.getSession().setAttribute(username, username);
 			System.out.println(utenteDAO.findByUsername(username));
 			return "Menu";
-		} else
-			return "loginfallito";
-	}
+		} else {
+			flagLogin=1;
+			model.addAttribute("flagLogin", flagLogin);
+			return "Home";
+		}
+			}
 
-	@RequestMapping(path = "/registrazioneeffettuata")
-	public String registrazioneeffettuata() {
-		return "logineffettuato";
-	}
+
+
+
 
 	@RequestMapping(path = "/Menu")
-	public String Menu(@WebParam String username, Model model, HttpServletRequest request) {
+	public String Menu(@WebParam Model model, HttpServletRequest request) {
 		int flag = 1;
+		int j = 0;
+		String username = (String) request.getSession().getAttribute("username");
+
+		
 		if (username != null) {
 			model.addAttribute("flag", flag);
 			return "Menu";
@@ -115,6 +204,7 @@ public class HomeController {
 		model.addAttribute("flag", flag);
 		return "Menu";
 	}
+
 
 	@RequestMapping(path = "/costruisci")
 	public String costruisci(@WebParam String sigla, Model model, HttpServletRequest request) throws IOException {
@@ -131,14 +221,10 @@ public class HomeController {
 			trenoDAO.add(treno, utenteDAO.findByUsername(username));
 
 			List<String> trenoSigla = new LinkedList<String>();
-//				File locomotiva=new File("C:/Users/miste/eclipse-workspace/WebAppTreno2/src/main/webapp");
 			String locomotiva = "<img class='main-treno' src='./img/locomotivaV.png' width='150'>";
 			String passeggeri = "<img class='main-treno' src='./img/passeggeriV.png' width='150'>";
 			String ristorante = "<img class='main-treno' src='./img/ristoranteV.png' width='150' >";
 			String cargo = "<img class='main-treno' src='./img/cargoV.png' width='150'>";
-//				File passeggeri=new File("C:/Users/miste/eclipse-workspace/WebAppTreno2/src/main/webapp");
-//				File ristorante=new File("C:/Users/miste/eclipse-workspace/WebAppTreno2/src/main/webapp");
-//				File cargo=new File("C:/Users/miste/eclipse-workspace/WebAppTreno2/src/main/webapp");
 			for (int i = 0; i < sigla.length(); i++) {
 				switch (sigla.charAt(i)) {
 				case 'H':
