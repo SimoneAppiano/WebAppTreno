@@ -32,14 +32,17 @@
   </a>
 </div>
 
+
 <h1>Lista Treni creati da ${username}</h1>
 
 
  ${sigla}
 ${trenoSigla}
   
+
  <%request.getSession().getAttribute("listaTreni");
  request.getSession().getAttribute("username");
  %>
+
 </body>
 </html>
