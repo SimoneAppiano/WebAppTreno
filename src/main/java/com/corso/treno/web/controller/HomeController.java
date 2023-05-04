@@ -28,11 +28,10 @@ import dto.TrenoDTO;
 import exception.Errori;
 import treno.Treno;
 
+//prova
 
 @Controller
 public class HomeController {
-
-	// modifica da cancellare
 	@RequestMapping(path = "/")
 	public String boh(Model model) {
 		int flag = 0;
