@@ -6,6 +6,7 @@ import java.io.File;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 
 import javax.jws.WebParam;
@@ -45,8 +46,10 @@ public class HomeController {
 		String passeggeri = "<img class='main-treno' src='./img/passeggeriV.png' width='150'>";
 		String ristorante = "<img class='main-treno' src='./img/ristoranteV.png' width='150' >";
 		String cargo = "<img class='main-treno' src='./img/cargoV.png' width='150'>";
-
-		for (TrenoDTO t : trenoDAO.listaTreni()) {
+		List<TrenoDTO> l = trenoDAO.listaTreni() ;
+				Collections.reverse(l);
+				
+		for (TrenoDTO t : l) {
 			if (j == 5)
 				break;
 				for (int i = 0; i < t.getSigla().length(); i++) {
@@ -134,8 +137,10 @@ public class HomeController {
 		String passeggeri = "<img class='main-treno' src='./img/passeggeriV.png' width='150'>";
 		String ristorante = "<img class='main-treno' src='./img/ristoranteV.png' width='150' >";
 		String cargo = "<img class='main-treno' src='./img/cargoV.png' width='150'>";
-
-		for (TrenoDTO t : trenoDAO.listaTreni()) {
+		List<TrenoDTO> l = trenoDAO.listaTreni() ;
+		Collections.reverse(l);
+		for (TrenoDTO t : l) {
+			
 			if (j == 5)
 				break;
 				for (int i = 0; i < t.getSigla().length(); i++) {
@@ -163,6 +168,7 @@ public class HomeController {
 
 				trenoSigla.add("<br>");
 				j++;
+			
 		}
 
 		model.addAttribute("trenoSigla", prova(trenoSigla));
