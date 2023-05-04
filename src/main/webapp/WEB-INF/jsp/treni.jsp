@@ -14,7 +14,7 @@
 <meta charset="UTF-8">
 <title>Lista Treni ${username}</title>
 </head>
-<body>
+<body >
 <h1>Lista Treni creati da ${username}</h1>
 
 
@@ -22,5 +22,6 @@
 ${trenoSigla}
   
  <%request.getSession().getAttribute("listaTreni");%>
+ 
 </body>
 </html>

@@ -296,8 +296,9 @@ public class HomeController {
 					listaTreniUtente.add(t);
 
 				}
-
+				trenoSigla.add("<form action='elimina'><input type='submit' name='id' value='"+ t.getId() +"'></input></form>");
 				trenoSigla.add("<br>");
+				model.addAttribute("id", t.getId());
 			}
 		}
 
@@ -305,6 +306,13 @@ public class HomeController {
 		model.addAttribute("listaTreni", listaTreniUtente);
 
 		return "treni";
+	}
+	
+	@RequestMapping(path = "/elimina")
+	public String elimina(int id) {
+		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
+		trenoDAO.deleteTreno(id);
+		return "elimina";
 	}
 
 	public static String prova(List list) {
@@ -315,4 +323,5 @@ public class HomeController {
 		return finale;
 
 	}
+
 }
