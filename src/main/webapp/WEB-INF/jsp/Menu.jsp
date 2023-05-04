@@ -1,18 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<style type="text/css">
-<%@ include file = "Style.css"%>
-</style>
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-<meta charset="UTF-8">
-<title>Home</title>
-</head>
-<body onload = myFunction1()>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,5 +56,3 @@ function myFunction1() {
 </body>
 </html>
 
-</body>
-</html>
