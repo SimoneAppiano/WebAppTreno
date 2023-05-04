@@ -22,7 +22,6 @@
 		</form>
 		<ul>
 		<li>- Il Treno deve necessariamente iniziare con una Locomotiva 'H'</li>
-		<li>
 		<li>- Il Treno non puo' contenere sia vagoni Cargo sia vagoni Passeggeri</li>
 		<li>- Il Treno non puo' contenere sia vagoni Cargo sia vagoni Ristorante</li>
 		<li>- Ci puo' essere un solo vagone Ristorante e non puo' essere posizionato al fondo</li>
