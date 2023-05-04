@@ -164,5 +164,11 @@ button:hover{
     display: block;
     text-align: left;
   }
+}
 
+.treno{
+	margin-left:50px;
+}
+.errore{
+	color:red;
 }
