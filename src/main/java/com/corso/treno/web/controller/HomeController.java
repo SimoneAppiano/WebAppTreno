@@ -37,16 +37,13 @@ public class HomeController {
 	public String home() {
 		return "Home";
 	}
-	//ciao sto bene
-	@GetMapping(path = "/hello")
-	public String hello() {
-		return "hello";
+	@RequestMapping(path = "/Home")
+	public String home1() {
+		
+		return "Home";
 	}
 
-	@RequestMapping(path = "/altraprova")
-	public String altraprova() {
-		return "altraprova";
-	}
+
 	@RequestMapping(path = "/CreazioneTreno")
 	public String altraprova1() {
 		return "CreazioneTreno";
@@ -54,39 +51,48 @@ public class HomeController {
 
 	@RequestMapping(path = "/register")
 	public String register(@WebParam String username, @WebParam String password, Model model) {
-
+		int flag=0;
 		UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
+		model.addAttribute("Registrato", "Utente Registrato con Successo");
+		model.addAttribute("erroreRegister", "Utente gia' registrato");
 		try {
 			utenteDAO.add(username, password);
 			model.addAttribute("username", username);
 			model.addAttribute("password", password);
-		return "Register";
+			
+			flag=1;
+			model.addAttribute("flag",flag);
+		return "Home";
 		}
 		catch (Exception e) {
-			model.addAttribute("erroreRegister", e.getMessage());
-			return "erroreRegistrazione";
+			e.getMessage();
+			flag=2;
+			model.addAttribute("flag",flag);
+			return "Home";
 		}
 		
 	}
 
 	@RequestMapping(path = "/login")
 	public String login(@WebParam String username, @WebParam String password, Model model,HttpServletRequest request) {
-
+		int flagLogin=0;
 		UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
-
+		
+		model.addAttribute("erroreLogin", "Utente non registrato");
 		if (utenteDAO.findByUsernameEPassword(username,password)) {
+			
 			model.addAttribute("username", username);
 			request.getSession().setAttribute(username, username);
 			System.out.println(utenteDAO.findByUsername(username));
 			return "Menu";
-		} else
-			return "loginfallito";
-	}
+		} else {
+			flagLogin=1;
+			model.addAttribute("flagLogin", flagLogin);
+			return "Home";
+		}
+			}
 
-	@RequestMapping(path = "/registrazioneeffettuata")
-	public String registrazioneeffettuata() {
-		return "logineffettuato";
-	}
+
 	
 	@RequestMapping(path = "/costruisci")
 	public String costruisci(@WebParam String sigla, Model model, HttpServletRequest request) throws IOException {
