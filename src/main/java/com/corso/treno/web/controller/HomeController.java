@@ -98,6 +98,21 @@ public class HomeController {
 	@RequestMapping(path = "/Menu")
 	public String Menu(@WebParam String username, Model model, HttpServletRequest request) {
 		int flag = 1;
+		
+		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
+		
+		List<TrenoDTO> listaTreniUtente = new ArrayList<>();
+		List<String> trenoSigla = new LinkedList<String>();
+		TrenoDao t = null;
+		t.listaTreni();
+		
+		String locomotiva = "<img src='./img/locomotiva.png' width='150'>";			
+		String passeggeri = "<img src='./img/passeggeri.png' width='150'>";
+		String ristorante = "<img src='./img/ristorante.png' width='150' >";
+		String cargo = "<img src='./img/cargo.png' width='150'>";
+		
+		model.addAttribute("trenoSigla",prova(trenoSigla));
+//		model.addAttribute("sigla",sigla);
 		if (username != null) {
 			model.addAttribute("flag", flag);
 			return "Menu";
