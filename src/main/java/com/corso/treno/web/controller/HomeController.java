@@ -91,7 +91,8 @@ public class HomeController {
 	}
 
 	@RequestMapping(path = "/about")
-	public String about() {
+	public String about(HttpServletRequest request) {
+		String username = (String) request.getSession().getAttribute("username");
 		return "about";
 	}
 
@@ -128,6 +129,7 @@ public class HomeController {
 	@RequestMapping(path = "/login")
 	public String login(@WebParam String username, @WebParam String password, Model model, HttpServletRequest request) {
 		int j = 0;
+		request.getSession().setAttribute("username", username);
 		UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
 		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
 		List<TrenoDTO> listaTreniUtente = new ArrayList<>();
@@ -200,7 +202,51 @@ public class HomeController {
 		int flag = 1;
 		int j = 0;
 		String username = (String) request.getSession().getAttribute("username");
+		
+		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
 
+		List<TrenoDTO> listaTreniUtente = new ArrayList<>();
+		List<String> trenoSigla = new LinkedList<String>();
+
+		String locomotiva = "<img class='main-treno' src='./img/locomotivaV.png' width='150'>";
+		String passeggeri = "<img class='main-treno' src='./img/passeggeriV.png' width='150'>";
+		String ristorante = "<img class='main-treno' src='./img/ristoranteV.png' width='150' >";
+		String cargo = "<img class='main-treno' src='./img/cargoV.png' width='150'>";
+		List<TrenoDTO> l = trenoDAO.listaTreni() ;
+				Collections.reverse(l);
+				
+		for (TrenoDTO t : l) {
+			if (j == 5)
+				break;
+				for (int i = 0; i < t.getSigla().length(); i++) {
+					List<String> sigla = new LinkedList<String>();
+					switch (t.getSigla().charAt(i)) {
+					case 'H':
+						trenoSigla.add("<p id='lt'>" + t.getSigla() + "</p>");
+						trenoSigla.add("<br>");
+						trenoSigla.add(locomotiva);
+						break;
+					case 'P':
+						trenoSigla.add(passeggeri);
+						break;
+					case 'R':
+						trenoSigla.add(ristorante);
+						break;
+					case 'C':
+						trenoSigla.add(cargo);
+						break;
+					}
+
+					listaTreniUtente.add(t);
+
+				}
+
+				trenoSigla.add("<br>");
+				j++;
+		}
+		model.addAttribute("trenoSigla", prova(trenoSigla));
+		model.addAttribute("listaTreni", listaTreniUtente);
+		
 		
 		if (username != null) {
 			model.addAttribute("flag", flag);
@@ -261,6 +307,7 @@ public class HomeController {
 	@RequestMapping(path = "/treni")
 	public String treni(Model model, HttpServletRequest request) {
 		String username = (String) request.getSession().getAttribute("username");
+		request.getSession().setAttribute("username",username);
 		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
 
 		List<TrenoDTO> listaTreniUtente = new ArrayList<>();
