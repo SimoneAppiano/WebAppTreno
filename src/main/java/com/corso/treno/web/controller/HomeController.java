@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model;
+import org.apache.maven.artifact.repository.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,8 +33,14 @@ import treno.Treno;
 public class HomeController {
 
 	// modifica da cancellare
-	
 	@RequestMapping(path = "/")
+	public String boh(Model model) {
+		int flag = 0;
+		model.addAttribute("flag", flag);
+		return "Menu";
+	}
+	
+	@RequestMapping(path = "/Home")
 	public String home() {
 		return "Home";
 	}
@@ -73,8 +80,9 @@ public class HomeController {
 	public String login(@WebParam String username, @WebParam String password, Model model,HttpServletRequest request) {
 
 		UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
-
+		int flag = 1;
 		if (utenteDAO.findByUsernameEPassword(username,password)) {
+			model.addAttribute("flag", flag);
 			model.addAttribute("username", username);
 			request.getSession().setAttribute(username, username);
 			System.out.println(utenteDAO.findByUsername(username));
@@ -86,6 +94,18 @@ public class HomeController {
 	@RequestMapping(path = "/registrazioneeffettuata")
 	public String registrazioneeffettuata() {
 		return "logineffettuato";
+	}
+	
+	@RequestMapping(path = "/Menu")
+	public String Menu(@WebParam String username, Model model, HttpServletRequest request) {
+		int flag = 1;
+		if (username != null) {
+			model.addAttribute("flag", flag);
+			return "Menu";
+		}
+		flag = 0;
+		model.addAttribute("flag", flag);
+		return "Menu";
 	}
 	
 	@RequestMapping(path = "/costruisci")

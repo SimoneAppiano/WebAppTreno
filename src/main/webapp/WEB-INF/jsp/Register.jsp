@@ -7,7 +7,7 @@
 <style type="text/css">
 <%@ include file = "Style.css"%>
 </style>
-<title>Insert title here</title>
+<title>Registrazione effettuata</title>
 </head>
 <body>
 <h1>Congratulazioni ${username}, registrazione avvenuta con successo!</h1>

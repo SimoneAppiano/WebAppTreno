@@ -8,22 +8,30 @@
 </style>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Home</title>
 </head>
-<body>
+<body onload = myFunction1()>
 <!--  navbar -->
+<%request.getSession().setAttribute("username", request.getParameter("username"));
+request.getSession().setAttribute("flag", request.getParameter("flag"));
+String username;
+username = request.getParameter("username");
+boolean flag = true;
+%>
 <div class="topnav" id="myTopnav">
   <a href="#home" class="active"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
+  <template>
   <a href="treni">Lista treni</a>
   <a href="CreazioneTreno">Crea Treno</a>
-  <a href="#about">About</a>
-  <a id="user" href="/treno"><i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username} </a>
+  </template>
+  <a id="user" href="Home"><i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username} </a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
 </div>
-<%request.getSession().setAttribute("username", request.getParameter("username")); %>
-  Ciao ${username}
+<a hidden = "true">
+<input id="flag" name="prova" value="${flag}"></input>
+</a>
 <script>
 function myFunction() {
   var x = document.getElementById("myTopnav");
@@ -33,8 +41,15 @@ function myFunction() {
     x.className = "topnav";
   }
 }
+function myFunction1() {
+	var flag = document.getElementById("flag").value;
+	if (flag == 1) {
+	var temp = document.getElementsByTagName("template")[0];
+	  var clon = temp.content.cloneNode(true);
+	  document.getElementById("myTopnav").appendChild(clon);
+	}
+	} 
 </script>
-<h1>Pagina Principale</h1>
 
 </body>
 </html>
