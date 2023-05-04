@@ -36,6 +36,7 @@ public class HomeController {
 		return "Home";
 	}
 
+	// ciao a tutti
 	// ciao sto bene
 	@GetMapping(path = "/hello")
 	public String hello() {
