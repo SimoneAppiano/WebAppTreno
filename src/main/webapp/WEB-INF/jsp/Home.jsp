@@ -10,7 +10,9 @@
 <style type="text/css">
 		<%@ include file = "Style.css"%>
 </style>
-
+<%request.getSession().getAttribute("listaTreni");
+ request.getSession().getAttribute("username");
+ %>
 </head>
 <body onload="start()" >
 
