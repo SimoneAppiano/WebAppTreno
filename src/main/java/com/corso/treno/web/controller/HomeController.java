@@ -19,7 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import builder.TrenoBuilder;
+import builder.*;
 import builder.TN.TNBuilder;
 import dao.*;
 import daoImpl.TrenoDaoImpl;
