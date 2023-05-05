@@ -1,3 +1,7 @@
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,11 +14,11 @@
 </head>
 <body onload = myFunction1()>
 <!--  navbar -->
-<%request.getSession().setAttribute("username", request.getParameter("username"));
+<%request.getSession().getAttribute("username");
 request.getSession().getAttribute("listaTreni");
 %>
 <div class="topnav" id="myTopnav">
-  <a href="#home" class="active"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
+  <a href="Menu" class="active"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
 
   <template>
   <a href="treni">Lista treni</a>
@@ -55,4 +59,5 @@ function myFunction1() {
 
 </body>
 </html>
+
 

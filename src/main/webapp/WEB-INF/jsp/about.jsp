@@ -11,12 +11,15 @@
 <title>About</title>
 </head>
 <body>
- <%request.getSession().getAttribute("listaTreni");%>
+ <%request.getSession().getAttribute("listaTreni");
+ request.getSession().getAttribute("username");
+ 
+ %>
 <!--  navbar -->
 <nav>
 <div class="topnav" id="myTopnav">
 
-  <a href="Home" class="active"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
+  <a href="Menu" class="active"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
 
   <a href="treni">Lista treni</a>
   <a href="CreazioneTreno">Crea Treno</a>
@@ -27,7 +30,7 @@
   </a>
 </div>
 
-<%request.getSession().setAttribute("username", request.getParameter("username")); %>
+
   
 <script>
 function myFunction() {
