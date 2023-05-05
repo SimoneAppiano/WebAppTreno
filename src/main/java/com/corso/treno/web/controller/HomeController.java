@@ -52,7 +52,7 @@ public class HomeController {
 		for (TrenoDTO t : l) {
 			if (j == 5)
 				break;
-				for (int i = 0; i < t.getSigla().length(); i++) {
+				for (int i = 0; i < t.getSigla().toUpperCase().length(); i++) {
 					List<String> sigla = new LinkedList<String>();
 					switch (t.getSigla().charAt(i)) {
 					case 'H':
@@ -145,7 +145,7 @@ public class HomeController {
 			
 			if (j == 5)
 				break;
-				for (int i = 0; i < t.getSigla().length(); i++) {
+				for (int i = 0; i < t.getSigla().toUpperCase().length(); i++) {
 					List<String> sigla = new LinkedList<String>();
 					switch (t.getSigla().charAt(i)) {
 					case 'H':
