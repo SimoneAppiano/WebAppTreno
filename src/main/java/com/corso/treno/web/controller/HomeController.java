@@ -52,9 +52,9 @@ public class HomeController {
 		for (TrenoDTO t : l) {
 			if (j == 5)
 				break;
-				for (int i = 0; i < t.getSigla().toUpperCase().length(); i++) {
+				for (int i = 0; i < t.getSigla().length(); i++) {
 					List<String> sigla = new LinkedList<String>();
-					switch (t.getSigla().charAt(i)) {
+					switch (t.getSigla().toUpperCase().charAt(i)) {
 					case 'H':
 						trenoSigla.add("<p id='lt'>" + t.getSigla() + "</p>");
 						trenoSigla.add("<br>");
@@ -145,9 +145,9 @@ public class HomeController {
 			
 			if (j == 5)
 				break;
-				for (int i = 0; i < t.getSigla().toUpperCase().length(); i++) {
+				for (int i = 0; i < t.getSigla().length(); i++) {
 					List<String> sigla = new LinkedList<String>();
-					switch (t.getSigla().charAt(i)) {
+					switch (t.getSigla().toUpperCase().charAt(i)) {
 					case 'H':
 						trenoSigla.add("<p id='lt'>" + t.getSigla() + "</p>");
 						trenoSigla.add("<br>");
