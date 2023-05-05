@@ -358,7 +358,7 @@ public class HomeController {
 	@RequestMapping(path = "/elimina")
 	public String elimina(int id) {
 		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
-		trenoDAO.deleteTreno(id);
+		//trenoDAO.deleteTreno(id);
 		return "elimina";
 	}
 
