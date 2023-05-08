@@ -54,7 +54,7 @@ public class HomeController {
 				break;
 				for (int i = 0; i < t.getSigla().length(); i++) {
 					List<String> sigla = new LinkedList<String>();
-					switch (t.getSigla().charAt(i)) {
+					switch (t.getSigla().toUpperCase().charAt(i)) {
 					case 'H':
 						trenoSigla.add("<p id='lt'>" + t.getSigla() + "</p>");
 						trenoSigla.add("<br>");
@@ -91,8 +91,15 @@ public class HomeController {
 	}
 
 	@RequestMapping(path = "/about")
-	public String about(HttpServletRequest request) {
+	public String about(HttpServletRequest request, Model model) {
+		int flag = 1;
 		String username = (String) request.getSession().getAttribute("username");
+		if (username != null) {
+			model.addAttribute("flag", flag);
+			return "about";
+		}
+		flag = 0;
+		model.addAttribute("flag", flag);
 		return "about";
 	}
 
@@ -147,7 +154,7 @@ public class HomeController {
 				break;
 				for (int i = 0; i < t.getSigla().length(); i++) {
 					List<String> sigla = new LinkedList<String>();
-					switch (t.getSigla().charAt(i)) {
+					switch (t.getSigla().toUpperCase().charAt(i)) {
 					case 'H':
 						trenoSigla.add("<p id='lt'>" + t.getSigla() + "</p>");
 						trenoSigla.add("<br>");
@@ -358,7 +365,7 @@ public class HomeController {
 	@RequestMapping(path = "/elimina")
 	public String elimina(int id) {
 		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
-		//trenoDAO.deleteTreno(id);
+		trenoDAO.deleteTreno(id);
 		return "elimina";
 	}
 

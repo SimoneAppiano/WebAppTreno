@@ -29,7 +29,7 @@ include file="Style.css"%>
 	<h1>Costruisci il tuo treno</h1>
 	<div class="form">
 		<form method="GET" action="./costruisci">
-			<input type="text" name="sigla">
+			<input type="text" name="sigla" style="text-transform:uppercase">
 			<button type="submit" value="Costruisci">Costruisci Treno</button>
 			<%
 			request.getSession().getAttribute("username");
