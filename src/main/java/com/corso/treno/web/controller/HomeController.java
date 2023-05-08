@@ -91,8 +91,15 @@ public class HomeController {
 	}
 
 	@RequestMapping(path = "/about")
-	public String about(HttpServletRequest request) {
+	public String about(HttpServletRequest request, Model model) {
+		int flag = 1;
 		String username = (String) request.getSession().getAttribute("username");
+		if (username != null) {
+			model.addAttribute("flag", flag);
+			return "about";
+		}
+		flag = 0;
+		model.addAttribute("flag", flag);
 		return "about";
 	}
 
