@@ -21,26 +21,32 @@ request.getSession().getAttribute("listaTreni");
   <a href="Menu" class="active"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
 
   <template>
-  <a href="treni">Lista treni</a>
-  <a href="CreazioneTreno">Crea Treno</a>
+	  <a href="treni">Lista treni</a>
+	  <a href="CreazioneTreno">Crea Treno</a>
   </template>
   <a href="about" id="about">About</a>
  <!-- <a id="user" href="Home"><i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username} </a>-->
    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
+  
+
+<div class="dropdown">
+  <a class="dropbtn" href="#"> <i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username}</a> 
+  
+  <div class="dropdown-content">
+ 	<a href="Home">Cambio Utente</a>
+	<a href="logout">Logout</a>
+  </div>
 </div>
-<div id="hormenu">
-<ul>
-<li>
-<a id="user" href="#"> <i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username}</a> 
-<ul> 
-<li><a href="Home">Cambio Utente</a></li>
-<li><a href="logout">Logout</a></li>
-</ul>
-</li>
-</ul>
-</div>
+	
+
+</div>  
+
+  
+
+
+
 
 
 <a hidden = "true">
