@@ -36,7 +36,7 @@ request.getSession().getAttribute("listaTreni");
 <a id="user" href="#"> <i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username}</a> 
 <ul> 
 <li><a href="Home">Cambio Utente</a></li>
-<li><a href="Menu">Logout</a></li>
+<li><a href="logout">Logout</a></li>
 </ul>
 </li>
 </ul>
@@ -68,7 +68,7 @@ function myFunction1() {
 	  document.getElementById("myTopnav").appendChild(clon); 
 	  
 	}
-	} 
+	}
 </script>
 
 </body>
