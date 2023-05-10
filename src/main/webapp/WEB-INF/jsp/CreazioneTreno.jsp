@@ -30,6 +30,10 @@ include file="Style.css"%>
 	<div class="form">
 		<form method="GET" action="./costruisci">
 			<input type="text" name="sigla">
+			<select name="Builder" class="inline">
+                <option  value="TrenoNord"> TreNord</option>
+                <option  value="Frecciarossa">Frecciarossa</option>
+               </select>
 			<button type="submit" value="Costruisci">Costruisci Treno</button>
 			<%
 			request.getSession().getAttribute("username");
