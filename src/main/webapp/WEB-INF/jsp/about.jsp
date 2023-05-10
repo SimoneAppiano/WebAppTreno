@@ -17,18 +17,30 @@
  %>
 <!--  navbar -->
 <div class="topnav" id="myTopnav">
-
   <a href="Menu" class="active"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
+
   <template>
-  <a href="treni">Lista treni</a>
-  <a href="CreazioneTreno">Crea Treno</a>
+	  <a href="treni">Lista treni</a>
+	  <a href="CreazioneTreno">Crea Treno</a>
   </template>
   <a href="about" id="about">About</a>
-  <a href="Home" id="user"><i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username} </a>
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+ <!-- <a id="user" href="Home"><i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username} </a>-->
+   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
+  
+
+<div class="dropdown">
+  <a class="dropbtn" href="#"> <i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username}</a> 
+  
+  <div class="dropdown-content">
+ 	<a href="Home">Cambio Utente</a>
+	<a href="logout">Logout</a>
+  </div>
 </div>
+	
+
+</div> 
 
 <a hidden = "true">
 <input id="flag" name="prova" value="${flag}"></input>

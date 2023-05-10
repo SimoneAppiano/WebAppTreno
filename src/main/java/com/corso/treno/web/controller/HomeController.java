@@ -365,7 +365,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path = "logout")
-	public String logout(Model model) {
+	public String logout(Model model, HttpServletRequest request) {
+		request.getSession().invalidate();
 		int flag = 0;
 		int j = 0;
 		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
