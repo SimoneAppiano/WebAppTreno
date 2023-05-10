@@ -9,7 +9,7 @@
 include file="Style.css"%>
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-<title>Insert title here</title>
+<title>Crea treno</title>
 </head>
 <body>
 <!--  navbar -->
@@ -61,6 +61,7 @@ include file="Style.css"%>
 			<h3>${sigla}
 				<span class="errore">${errore}</span>
 			</h3>
+			<p>Peso del treno: ${peso}T</p>
 			${trenoSigla}
 		</div>
 
