@@ -19,7 +19,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import builder.*;
+
+import builder.TrenoBuilder;
+import builder.FR.*;
+
 import builder.TN.TNBuilder;
 import dao.*;
 import daoImpl.TrenoDaoImpl;
@@ -27,6 +30,8 @@ import daoImpl.UtenteDaoImpl;
 import dto.TrenoDTO;
 import exception.Errori;
 import treno.Treno;
+import vagoni.Carrozza;
+import vagoni.Vagone;
 
 //prova
 
@@ -266,37 +271,39 @@ public class HomeController {
 
 
 	@RequestMapping(path = "/costruisci")
-	public String costruisci(@WebParam String sigla, Model model, HttpServletRequest request) throws IOException {
+	public String costruisci(@WebParam String sigla,@WebParam String Builder, Model model, HttpServletRequest request) throws IOException {
 		String username = (String) request.getSession().getAttribute("username");
+		if (Builder.equals("TrenoNord")) {
+		
 		Errori e1 = new Errori(sigla);
 		try {
 			TrenoBuilder trenoTN = new TNBuilder();
 			Treno treno = trenoTN.costruisci(sigla);
 			System.out.println(treno);
-
+			List<Carrozza> v= new LinkedList<Carrozza>();
+			v.add(treno.getLocomotiva());
+			v.addAll(treno.getListaVagoni());
+			
 			TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
 			UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
-
+			
 			trenoDAO.add(treno, utenteDAO.findByUsername(username));
-
+			
 			List<String> trenoSigla = new LinkedList<String>();
-			String locomotiva = "<img class='main-treno' src='./img/locomotivaV.png' width='150'>";
-			String passeggeri = "<img class='main-treno' src='./img/passeggeriV.png' width='150'>";
-			String ristorante = "<img class='main-treno' src='./img/ristoranteV.png' width='150' >";
-			String cargo = "<img class='main-treno' src='./img/cargoV.png' width='150'>";
+
 			for (int i = 0; i < sigla.length(); i++) {
 				switch (sigla.charAt(i)) {
 				case 'H':
-					trenoSigla.add(locomotiva);
+					trenoSigla.add(v.get(i).getImg());
 					break;
 				case 'P':
-					trenoSigla.add(passeggeri);
+					trenoSigla.add(v.get(i).getImg());
 					break;
 				case 'R':
-					trenoSigla.add(ristorante);
+					trenoSigla.add(v.get(i).getImg());
 					break;
 				case 'C':
-					trenoSigla.add(cargo);
+					trenoSigla.add(v.get(i).getImg());
 					break;
 				}
 				model.addAttribute("trenoSigla", prova(trenoSigla));
@@ -309,7 +316,48 @@ public class HomeController {
 		}
 
 		return "CreazioneTreno";
+		}else {
+			
+			Errori e1 = new Errori(sigla);
+			try {
+				TrenoBuilder trenoTN = new FRBuilder();
+				Treno treno = trenoTN.costruisci(sigla);
+				System.out.println(treno);
+				List<Carrozza> v= new LinkedList<Carrozza>();
+				v.add(treno.getLocomotiva());
+				v.addAll(treno.getListaVagoni());
+				
+				TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
+				UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
+				
+				trenoDAO.add(treno, utenteDAO.findByUsername(username));
+				
+				List<String> trenoSigla = new LinkedList<String>();
 
+				for (int i = 0; i < sigla.length(); i++) {
+					switch (sigla.charAt(i)) {
+					case 'H':
+						trenoSigla.add(v.get(i).getImg());
+						break;
+					case 'P':
+						trenoSigla.add(v.get(i).getImg());
+						break;
+					case 'R':
+						trenoSigla.add(v.get(i).getImg());
+						break;
+					case 'C':
+						trenoSigla.add(v.get(i).getImg());
+						break;
+					}
+					model.addAttribute("trenoSigla", prova(trenoSigla));
+					model.addAttribute("sigla", sigla);
+				}
+			} catch (Exception e) {
+				model.addAttribute("errore", e1.getMessage(sigla));
+				model.addAttribute("siglaSuggerita", e1.siglaSuggerita(sigla));
+			}
+			return "CreazioneTreno";
+		}
 	}
 
 	@RequestMapping(path = "/treni")
