@@ -25,12 +25,23 @@ request.getSession().getAttribute("listaTreni");
   <a href="CreazioneTreno">Crea Treno</a>
   </template>
   <a href="about" id="about">About</a>
-  <a id="user" href="Home"><i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username} </a>
-
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+ <!-- <a id="user" href="Home"><i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username} </a>-->
+   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
 </div>
+<div id="hormenu">
+<ul>
+<li>
+<a id="user" href="#"> <i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username}</a> 
+<ul> 
+<li><a href="Home">Cambio Utente</a></li>
+<li><a href="Menu">Logout</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
 
 <a hidden = "true">
 <input id="flag" name="prova" value="${flag}"></input>
