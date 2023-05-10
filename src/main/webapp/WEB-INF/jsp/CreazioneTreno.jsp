@@ -9,7 +9,7 @@
 include file="Style.css"%>
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-<title>Insert title here</title>
+<title>Crea treno</title>
 </head>
 <body>
 <!--  navbar -->
@@ -21,19 +21,28 @@ include file="Style.css"%>
   <a href="treni">Lista treni</a>
   <a href="CreazioneTreno">Crea Treno</a>
   <a href="about">About</a>
-  <a href="treni" id="user" href="/treno"><i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username} </a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
+  <div class="dropdown">
+  <a class="dropbtn" href="#"> <i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username}</a> 
+  
+  <div class="dropdown-content">
+ 	<a href="Home">Cambio Utente</a>
+	<a href="logout">Logout</a>
+  </div>
+</div>
 </div>
 	<h1>Costruisci il tuo treno</h1>
 	<div class="form">
 		<form method="GET" action="./costruisci">
-			<input type="text" name="sigla">
+
+			<input type="text" name="sigla" style="text-transform:uppercase">
 			<select name="Builder" class="inline">
                 <option  value="TrenoNord"> TreNord</option>
                 <option  value="Frecciarossa">Frecciarossa</option>
                </select>
+
 			<button type="submit" value="Costruisci">Costruisci Treno</button>
 			<%
 			request.getSession().getAttribute("username");
@@ -65,6 +74,7 @@ include file="Style.css"%>
 			<h3>${sigla}
 				<span class="errore">${errore}</span>
 			</h3>
+			<p>Peso del treno: ${peso}T</p>
 			${trenoSigla}
 		</div>
 
