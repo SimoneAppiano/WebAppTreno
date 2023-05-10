@@ -19,7 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import builder.TrenoBuilder;
+import builder.*;
 import builder.TN.TNBuilder;
 import dao.*;
 import daoImpl.TrenoDaoImpl;
@@ -91,8 +91,15 @@ public class HomeController {
 	}
 
 	@RequestMapping(path = "/about")
-	public String about(HttpServletRequest request) {
+	public String about(HttpServletRequest request, Model model) {
+		int flag = 1;
 		String username = (String) request.getSession().getAttribute("username");
+		if (username != null) {
+			model.addAttribute("flag", flag);
+			return "about";
+		}
+		flag = 0;
+		model.addAttribute("flag", flag);
 		return "about";
 	}
 
@@ -353,6 +360,59 @@ public class HomeController {
 		model.addAttribute("listaTreni", listaTreniUtente);
 
 		return "treni";
+	}
+	
+	@RequestMapping(path = "logout")
+	public String logout(Model model) {
+		int flag = 0;
+		int j = 0;
+		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
+
+		List<TrenoDTO> listaTreniUtente = new ArrayList<>();
+		List<String> trenoSigla = new LinkedList<String>();
+
+		String locomotiva = "<img class='main-treno' src='./img/locomotivaV.png' width='150'>";
+		String passeggeri = "<img class='main-treno' src='./img/passeggeriV.png' width='150'>";
+		String ristorante = "<img class='main-treno' src='./img/ristoranteV.png' width='150' >";
+		String cargo = "<img class='main-treno' src='./img/cargoV.png' width='150'>";
+		List<TrenoDTO> l = trenoDAO.listaTreni() ;
+				Collections.reverse(l);
+				
+		for (TrenoDTO t : l) {
+			if (j == 5)
+				break;
+				for (int i = 0; i < t.getSigla().length(); i++) {
+					List<String> sigla = new LinkedList<String>();
+					switch (t.getSigla().toUpperCase().charAt(i)) {
+					case 'H':
+						trenoSigla.add("<p id='lt'>" + t.getSigla() + "</p>");
+						trenoSigla.add("<br>");
+						trenoSigla.add(locomotiva);
+						break;
+					case 'P':
+						trenoSigla.add(passeggeri);
+						break;
+					case 'R':
+						trenoSigla.add(ristorante);
+						break;
+					case 'C':
+						trenoSigla.add(cargo);
+						break;
+					}
+
+					listaTreniUtente.add(t);
+
+				}
+
+				trenoSigla.add("<br>");
+				j++;
+		}
+
+		model.addAttribute("trenoSigla", prova(trenoSigla));
+		model.addAttribute("listaTreni", listaTreniUtente);
+		model.addAttribute("flag", flag);
+		model.addAttribute("username", "");
+		return "Menu";
 	}
 	
 	@RequestMapping(path = "/elimina")
