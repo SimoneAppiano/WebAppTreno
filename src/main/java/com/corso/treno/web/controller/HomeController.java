@@ -301,6 +301,7 @@ public class HomeController {
 				}
 				model.addAttribute("trenoSigla", prova(trenoSigla));
 				model.addAttribute("sigla", sigla);
+				model.addAttribute("peso", treno.getPeso());
 			}
 		} catch (Exception e) {
 			model.addAttribute("errore", e1.getMessage(sigla));
@@ -350,8 +351,9 @@ public class HomeController {
 					listaTreniUtente.add(t);
 
 				}
-				trenoSigla.add("<form action='elimina'><input type='submit' name='id' value='"+ t.getId() +"'></input></form>");
-				trenoSigla.add("<br>");
+				trenoSigla.add("<p>Peso treno: " + t.getPeso() + "T</p>");
+				trenoSigla.add("<p>Elimina treno: <form action='elimina'><input type='submit' name='id' value='"+ t.getId() +"'></input></form>");
+				trenoSigla.add("</p>");
 				model.addAttribute("id", t.getId());
 			}
 		}
