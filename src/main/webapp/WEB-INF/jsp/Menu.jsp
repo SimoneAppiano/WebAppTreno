@@ -21,16 +21,33 @@ request.getSession().getAttribute("listaTreni");
   <a href="Menu" class="active"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
 
   <template>
-  <a href="treni">Lista treni</a>
-  <a href="CreazioneTreno">Crea Treno</a>
+	  <a href="treni">Lista treni</a>
+	  <a href="CreazioneTreno">Crea Treno</a>
   </template>
-  <a href="about">About</a>
-  <a id="user" href="Home"><i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username} </a>
-
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+  <a href="about" id="about">About</a>
+ <!-- <a id="user" href="Home"><i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username} </a>-->
+   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
+  
+
+<div class="dropdown">
+  <a class="dropbtn" href="#"> <i class="fa-solid fa-user" style="color: #ffffff;"></i> ${username}</a> 
+  
+  <div class="dropdown-content">
+ 	<a href="Home">Cambio Utente</a>
+	<a href="logout">Logout</a>
+  </div>
 </div>
+	
+
+</div>  
+
+  
+
+
+
+
 
 <a hidden = "true">
 <input id="flag" name="prova" value="${flag}"></input>
@@ -52,9 +69,12 @@ function myFunction1() {
 	if (flag == 1) {
 	var temp = document.getElementsByTagName("template")[0];
 	  var clon = temp.content.cloneNode(true);
-	  document.getElementById("myTopnav").appendChild(clon);
+	  var about = document.getElementById("about");
+	  clon.appendChild(about);
+	  document.getElementById("myTopnav").appendChild(clon); 
+	  
 	}
-	} 
+	}
 </script>
 
 </body>

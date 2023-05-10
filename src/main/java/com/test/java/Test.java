@@ -6,6 +6,8 @@ import org.hibernate.cfg.Configuration;
 
 import treno.Treno;
 import builder.TN.*;
+import daoImpl.*;
+import dao.*;
 
 public class Test {
 
@@ -18,6 +20,10 @@ public class Test {
 		TNBuilder builder=new TNBuilder();
 		Treno treno1 = builder.costruisci("HCCCC");
 		System.out.println(treno1.toString());
+		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
+		UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
+		trenoDAO.add(treno1, utenteDAO.findByID(1));
+		System.out.println(trenoDAO.add(treno1, utenteDAO.findByID(1)));
 		
 		
 	}
