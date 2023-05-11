@@ -271,9 +271,8 @@ public class HomeController {
 
 
 	@RequestMapping(path = "/costruisci")
-	public String costruisci(@WebParam String sigla,@WebParam String Builder, Model model, HttpServletRequest request) throws IOException {
-		String username = (String) request.getSession().getAttribute("username");
-		if (Builder.equals("TrenoNord")) {
+	public String costruisci(@WebParam String sigla, Model model, HttpServletRequest request, @WebParam String tipo) throws IOException {		String username = (String) request.getSession().getAttribute("username");
+//		if (Builder.equals("TrenoNord")) {
 		
 		Errori e1 = new Errori(sigla);
 		try {
@@ -287,23 +286,47 @@ public class HomeController {
 			TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
 			UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
 			
-			trenoDAO.add(treno, utenteDAO.findByUsername(username));
-			
-			List<String> trenoSigla = new LinkedList<String>();
+			trenoDAO.add(treno, utenteDAO.findByUsername(username), tipo);
+			String locomotiva;
+			String passeggeri;
+			String ristorante;
+			String cargo;	
 
+			System.out.println(tipo);
+			List<String> trenoSigla = new LinkedList<String>();
+			if (tipo.equals("TN")) {
+				System.out.println(tipo);
+				locomotiva = "<img class='main-treno' src='./img/locomotiva.png' width='150'>";
+				passeggeri = "<img class='main-treno' src='./img/passeggeri.png' width='150'>";
+				ristorante = "<img class='main-treno' src='./img/ristorante.png' width='150' >";
+				cargo = "<img class='main-treno' src='./img/cargo.png' width='150'>";	
+			} else {
+				locomotiva = "<img class='main-treno' src='./img/locomotivaFR.png' width='150'>";
+				passeggeri = "<img class='main-treno' src='./img/passeggeriFR.png' width='150'>";
+				ristorante = "<img class='main-treno' src='./img/ristoranteFR.png' width='150' >";
+				cargo = "<img class='main-treno' src='./img/cargoFR.png' width='150'>";		
+			}
+			
 			for (int i = 0; i < sigla.length(); i++) {
 				switch (sigla.charAt(i)) {
 				case 'H':
-					trenoSigla.add(v.get(i).getImg());
+					// trenoSigla.add(v.get(i).getImg());
+					trenoSigla.add(locomotiva);
 					break;
 				case 'P':
-					trenoSigla.add(v.get(i).getImg());
+//					trenoSigla.add(v.get(i).getImg());
+
+					trenoSigla.add(passeggeri);
 					break;
 				case 'R':
-					trenoSigla.add(v.get(i).getImg());
+//					trenoSigla.add(v.get(i).getImg());
+
+					trenoSigla.add(ristorante);
 					break;
 				case 'C':
-					trenoSigla.add(v.get(i).getImg());
+//					trenoSigla.add(v.get(i).getImg());
+
+					trenoSigla.add(cargo);
 					break;
 				}
 				model.addAttribute("trenoSigla", prova(trenoSigla));
@@ -316,48 +339,48 @@ public class HomeController {
 		}
 
 		return "CreazioneTreno";
-		}else {
-			
-			Errori e1 = new Errori(sigla);
-			try {
-				TrenoBuilder trenoTN = new FRBuilder();
-				Treno treno = trenoTN.costruisci(sigla);
-				System.out.println(treno);
-				List<Carrozza> v= new LinkedList<Carrozza>();
-				v.add(treno.getLocomotiva());
-				v.addAll(treno.getListaVagoni());
-				
-				TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
-				UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
-				
-				trenoDAO.add(treno, utenteDAO.findByUsername(username));
-				
-				List<String> trenoSigla = new LinkedList<String>();
-
-				for (int i = 0; i < sigla.length(); i++) {
-					switch (sigla.charAt(i)) {
-					case 'H':
-						trenoSigla.add(v.get(i).getImg());
-						break;
-					case 'P':
-						trenoSigla.add(v.get(i).getImg());
-						break;
-					case 'R':
-						trenoSigla.add(v.get(i).getImg());
-						break;
-					case 'C':
-						trenoSigla.add(v.get(i).getImg());
-						break;
-					}
-					model.addAttribute("trenoSigla", prova(trenoSigla));
-					model.addAttribute("sigla", sigla);
-				}
-			} catch (Exception e) {
-				model.addAttribute("errore", e1.getMessage(sigla));
-				model.addAttribute("siglaSuggerita", e1.siglaSuggerita(sigla));
-			}
-			return "CreazioneTreno";
-		}
+//		}else {
+//			
+//			Errori e1 = new Errori(sigla);
+//			try {
+//				TrenoBuilder trenoTN = new FRBuilder();
+//				Treno treno = trenoTN.costruisci(sigla);
+//				System.out.println(treno);
+//				List<Carrozza> v= new LinkedList<Carrozza>();
+//				v.add(treno.getLocomotiva());
+//				v.addAll(treno.getListaVagoni());
+//				
+//				TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
+//				UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
+//				
+//				trenoDAO.add(treno, utenteDAO.findByUsername(username));
+//				
+//				List<String> trenoSigla = new LinkedList<String>();
+//
+//				for (int i = 0; i < sigla.length(); i++) {
+//					switch (sigla.charAt(i)) {
+//					case 'H':
+//						trenoSigla.add(v.get(i).getImg());
+//						break;
+//					case 'P':
+//						trenoSigla.add(v.get(i).getImg());
+//						break;
+//					case 'R':
+//						trenoSigla.add(v.get(i).getImg());
+//						break;
+//					case 'C':
+//						trenoSigla.add(v.get(i).getImg());
+//						break;
+//					}
+//					model.addAttribute("trenoSigla", prova(trenoSigla));
+//					model.addAttribute("sigla", sigla);
+//				}
+//			} catch (Exception e) {
+//				model.addAttribute("errore", e1.getMessage(sigla));
+//				model.addAttribute("siglaSuggerita", e1.siglaSuggerita(sigla));
+//			}
+//			return "CreazioneTreno";
+//		}
 	}
 
 	@RequestMapping(path = "/treni")
@@ -367,17 +390,33 @@ public class HomeController {
 		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
 
 		List<TrenoDTO> listaTreniUtente = new ArrayList<>();
-		List<String> trenoSigla = new LinkedList<String>();
-
-		String locomotiva = "<img class='main-treno' src='./img/locomotivaV.png' width='150'>";
-		String passeggeri = "<img class='main-treno' src='./img/passeggeriV.png' width='150'>";
-		String ristorante = "<img class='main-treno' src='./img/ristoranteV.png' width='150' >";
-		String cargo = "<img class='main-treno' src='./img/cargoV.png' width='150'>";
-
+		List<String> trenoSigla = new LinkedList<String>();			
+	    String locomotiva = "";
+	    String passeggeri = "";
+	    String ristorante = "";
+	    String cargo = "";
+	
 		for (TrenoDTO t : trenoDAO.listaTreni()) {
 			if (t.getUtente().getUsername().equals(username)) {
+			
 				System.out.println(t);
 				for (int i = 0; i < t.getSigla().length(); i++) {
+					if (t.getTipo() == null) {
+						locomotiva = "<img class='main-treno' src='./img/locomotivaV.png' width='150'>";
+						passeggeri = "<img class='main-treno' src='./img/passeggeriV.png' width='150'>";
+						ristorante = "<img class='main-treno' src='./img/ristoranteV.png' width='150' >";
+						cargo = "<img class='main-treno' src='./img/cargoV.png' width='150'>";	
+					} else if (t.getTipo().equals("TN")) {
+						locomotiva = "<img class='main-treno' src='./img/locomotiva.png' width='150'>";
+						passeggeri = "<img class='main-treno' src='./img/passeggeri.png' width='150'>";
+						ristorante = "<img class='main-treno' src='./img/ristorante.png' width='150' >";
+						cargo = "<img class='main-treno' src='./img/cargo.png' width='150'>";	
+					} else if (t.getTipo().equals("FR")){
+						locomotiva = "<img class='main-treno' src='./img/locomotivaFR.png' width='150'>";
+						passeggeri = "<img class='main-treno' src='./img/passeggeriFR.png' width='150'>";
+						ristorante = "<img class='main-treno' src='./img/ristoranteFR.png' width='150' >";
+						cargo = "<img class='main-treno' src='./img/cargoFR.png' width='150'>";		
+					}
 					List<String> sigla = new LinkedList<String>();
 					switch (t.getSigla().charAt(i)) {
 					case 'H':
@@ -399,7 +438,16 @@ public class HomeController {
 					listaTreniUtente.add(t);
 
 				}
+				String stampaTipo = "";
+				if (t.getTipo() == null)
+					stampaTipo = "Non specificato";
+				else if (t.getTipo().equals("FR"))
+					stampaTipo = "Frecciarossa";
+				else if (t.getTipo().equals("TN"))
+					stampaTipo= "Trenord";
+				
 				trenoSigla.add("<p>Peso treno: " + t.getPeso() + "T</p>");
+				trenoSigla.add("<p>Tipo treno: " + stampaTipo + "</p>");
 				trenoSigla.add("<p>Elimina treno: <form action='elimina'><input type='submit' name='id' value='"+ t.getId() +"'></input></form>");
 				trenoSigla.add("</p>");
 				model.addAttribute("id", t.getId());
