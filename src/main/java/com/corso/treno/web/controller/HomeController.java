@@ -277,7 +277,13 @@ public class HomeController {
 		Errori e1 = new Errori(sigla);
 		try {
 			TrenoBuilder trenoTN = new TNBuilder();
-			Treno treno = trenoTN.costruisci(sigla);
+			TrenoBuilder trenoFR = new FRBuilder();
+			Treno treno = null;
+			if (tipo.equals("TN")) {
+				treno = trenoTN.costruisci(sigla);
+			} else if (tipo.equals("FR")) {
+				treno = trenoFR.costruisci(sigla);				
+			}
 			System.out.println(treno);
 			List<Carrozza> v= new LinkedList<Carrozza>();
 			v.add(treno.getLocomotiva());
