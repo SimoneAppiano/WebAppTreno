@@ -402,7 +402,7 @@ public class HomeController {
 					List<String> sigla = new LinkedList<String>();
 					switch (t.getSigla().charAt(i)) {
 					case 'H':
-						trenoSigla.add("<p id='lt'>" + t.getSigla() + "</p>");
+						trenoSigla.add("<p id='lt'><h3>" + t.getSigla() + "</h3></p>");
 						trenoSigla.add("<br>");
 						trenoSigla.add(locomotiva);
 						break;
@@ -430,8 +430,7 @@ public class HomeController {
 				
 				trenoSigla.add("<p>Peso treno: " + t.getPeso() + "T</p>");
 				trenoSigla.add("<p>Tipo treno: " + stampaTipo + "</p>");
-				trenoSigla.add("<p>Elimina treno: <form action='elimina'><input type='submit' name='id' value='"+ t.getId() +"'></input></form>");
-				trenoSigla.add("</p>");
+				trenoSigla.add("<form action='elimina'><input class='elimina' type='submit' value='Elimina'></input><input type='hidden' name='id' value='"+ t.getId() +"'></form>");
 				model.addAttribute("id", t.getId());
 			}
 		}
