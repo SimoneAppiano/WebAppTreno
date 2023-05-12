@@ -158,18 +158,30 @@ public class HomeController {
 		List<TrenoDTO> listaTreniUtente = new ArrayList<>();
 		List<String> trenoSigla = new LinkedList<String>();
 
-		String locomotiva = "<img class='main-treno' src='./img/locomotivaV.png' width='150'>";
-		String passeggeri = "<img class='main-treno' src='./img/passeggeriV.png' width='150'>";
-		String ristorante = "<img class='main-treno' src='./img/ristoranteV.png' width='150' >";
-		String cargo = "<img class='main-treno' src='./img/cargoV.png' width='150'>";
-		List<TrenoDTO> l = trenoDAO.listaTreni() ;
+	    String locomotiva = "";
+	    String passeggeri = "";
+	    String ristorante = "";
+	    String cargo = "";
+	
+	    List<TrenoDTO> l = trenoDAO.listaTreni() ;
 		Collections.reverse(l);
 		for (TrenoDTO t : l) {
+			if (t.getTipo().equals("TN")) {
+				locomotiva = "<img class='main-treno' src='./img/locomotiva.png' width='150'>";
+				passeggeri = "<img class='main-treno' src='./img/passeggeri.png' width='150'>";
+				ristorante = "<img class='main-treno' src='./img/ristorante.png' width='150' >";
+				cargo = "<img class='main-treno' src='./img/cargo.png' width='150'>";	
+			} else {
+				locomotiva = "<img class='main-treno' src='./img/locomotivaFR.png' width='150'>";
+				passeggeri = "<img class='main-treno' src='./img/passeggeriFR.png' width='150'>";
+				ristorante = "<img class='main-treno' src='./img/ristoranteFR.png' width='150' >";
+				cargo = "<img class='main-treno' src='./img/cargoFR.png' width='150'>";		
+			}
 			
+
 			if (j == 5)
 				break;
 				for (int i = 0; i < t.getSigla().length(); i++) {
-					List<String> sigla = new LinkedList<String>();
 					switch (t.getSigla().toUpperCase().charAt(i)) {
 					case 'H':
 						trenoSigla.add("<p id='lt'>" + t.getSigla() + "</p>");
@@ -339,7 +351,7 @@ public class HomeController {
 			}
 			
 			for (int i = 0; i < sigla.length(); i++) {
-				switch (sigla.charAt(i)) {
+				switch (sigla.toUpperCase().charAt(i)) {
 				case 'H':
 					trenoSigla.add(locomotiva);
 					break;
@@ -451,14 +463,28 @@ public class HomeController {
 		List<TrenoDTO> listaTreniUtente = new ArrayList<>();
 		List<String> trenoSigla = new LinkedList<String>();
 
-		String locomotiva = "<img class='main-treno' src='./img/locomotivaV.png' width='150'>";
-		String passeggeri = "<img class='main-treno' src='./img/passeggeriV.png' width='150'>";
-		String ristorante = "<img class='main-treno' src='./img/ristoranteV.png' width='150' >";
-		String cargo = "<img class='main-treno' src='./img/cargoV.png' width='150'>";
+	    String locomotiva = "";
+	    String passeggeri = "";
+	    String ristorante = "";
+	    String cargo = "";
+	
 		List<TrenoDTO> l = trenoDAO.listaTreni() ;
 		Collections.reverse(l);
 				
 		for (TrenoDTO t : l) {
+			if (t.getTipo().equals("TN")) {
+				locomotiva = "<img class='main-treno' src='./img/locomotiva.png' width='150'>";
+				passeggeri = "<img class='main-treno' src='./img/passeggeri.png' width='150'>";
+				ristorante = "<img class='main-treno' src='./img/ristorante.png' width='150' >";
+				cargo = "<img class='main-treno' src='./img/cargo.png' width='150'>";	
+			} else {
+				locomotiva = "<img class='main-treno' src='./img/locomotivaFR.png' width='150'>";
+				passeggeri = "<img class='main-treno' src='./img/passeggeriFR.png' width='150'>";
+				ristorante = "<img class='main-treno' src='./img/ristoranteFR.png' width='150' >";
+				cargo = "<img class='main-treno' src='./img/cargoFR.png' width='150'>";		
+			}
+			
+
 			if (j == 5)
 				break;
 				for (int i = 0; i < t.getSigla().length(); i++) {
