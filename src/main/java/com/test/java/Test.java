@@ -12,21 +12,21 @@ import dao.*;
 public class Test {
 
 	public static void main(String[] args) throws Exception {
-		testTreno();
+		//testTreno();
 
 	}
 
-	public static void testTreno(){
-		TNBuilder builder=new TNBuilder();
-		Treno treno1 = builder.costruisci("HCCCC");
-		System.out.println(treno1.toString());
-		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
-		UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
-		trenoDAO.add(treno1, utenteDAO.findByID(1));
-		System.out.println(trenoDAO.add(treno1, utenteDAO.findByID(1)));
-		
-		
-	}
+//	public static void testTreno(){
+//		TNBuilder builder=new TNBuilder();
+//		Treno treno1 = builder.costruisci("HCCCC");
+//		System.out.println(treno1.toString());
+//		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
+//		UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
+//		trenoDAO.add(treno1, utenteDAO.findByID(1));
+//		System.out.println(trenoDAO.add(treno1, utenteDAO.findByID(1)));
+//		
+//		
+//	}
 	
 	public SessionFactory factory() {
 		SessionFactory factory;
