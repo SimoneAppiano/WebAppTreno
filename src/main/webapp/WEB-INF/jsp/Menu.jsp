@@ -53,8 +53,9 @@ request.getSession().getAttribute("listaTreni");
 <input id="flag" name="prova" value="${flag}"></input>
 </a>
 <h1>Ultimi 5 treni creati dai nostri utenti</h1>
+<div class="lista_treni">
 ${trenoSigla}
-
+</div>
 <script>
 function myFunction() {
   var x = document.getElementById("myTopnav");
