@@ -1,4 +1,7 @@
 @charset "ISO-8859-1";
+*{
+	font-family:futura;
+}
 
 body{
 	margin: 0;
@@ -308,4 +311,33 @@ h1{
 	background: #6d44b8;
 }
 
+.homepage{
+	text-align:center;
+	margin: 30px;
+}
 
+.homepage p{
+	font-size:20px;
+}
+
+.homepage>a, a:visited{
+	text-decoration: none;
+}
+
+.homepage a:hover, a:visited{
+	text-decoration: none;
+}
+
+#link_treno{
+	text-decoration: none;
+	color:yellow;
+}
+
+#link_treno:hover{
+	background:grey;
+}
+
+.homepage_title{
+	margin:50px;
+	font-size:18px;
+}
