@@ -63,6 +63,7 @@ label{
 	cursor: pointer;
 	transition: .5s ease-in-out;
 }
+
 input{
 	width: 60%;
 	height: 20px;
@@ -152,7 +153,7 @@ button:hover{
   border: none;
   outline: none;
   color: white;
-  padding: 14px 50px;
+  padding: 14px 100px;
   background-color: inherit;
   font-family: inherit;
   margin: 0;
@@ -162,6 +163,7 @@ button:hover{
   display: none;
   position: absolute;
   background-color: #f9f9f9;
+  padding: 200px 200px 0 -50px; 
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -182,7 +184,7 @@ button:hover{
 }
 
 .dropdown-content a:hover {
-  background-color: #ddd;
+  background-color: #555;
   color: black;
 }
 
@@ -265,7 +267,45 @@ button:hover{
 	display: flex;
   justify-content: space-between;
 }
-
 /* --------*/
+#select_type{
+
+	display: flex;
+	justify-content: center;
+	margin-left:auto;
+	margin-right:auto;
+	min-height: 30px;
+	border-radius:10px;
+}
+
+h1{
+	text-align:center;
+}
+
+.lista_treni{
+	margin: 50px;
+}
+
+
+.elimina{
+	width: 60%;
+	height: 40px;
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+	color: #fff;
+	background: #573b8a;
+	font-size: 1em;
+	font-weight: bold;
+	margin-top: 20px;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+	cursor: pointer;
+}
+.elimina:hover{
+	background: #6d44b8;
+}
 
 

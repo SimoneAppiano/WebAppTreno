@@ -42,10 +42,10 @@
 
 <h1>Lista Treni creati da ${username}</h1>
 
-
+<div class="lista_treni">
  ${sigla}
 ${trenoSigla}
-  
+ </div> 
 
  <%request.getSession().getAttribute("listaTreni");
  request.getSession().getAttribute("username");
