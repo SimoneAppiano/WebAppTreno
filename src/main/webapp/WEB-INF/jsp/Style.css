@@ -1,6 +1,11 @@
 @charset "ISO-8859-1";
+@font-face {
+    font-family: 'Futura';
+    src: local('Futura'), url(../../font/OPTIFuturaDemiBold.otf) format('truetype');
+}
+
 *{
-	font-family:futura;
+	font-family:'Futura';
 }
 
 body{
