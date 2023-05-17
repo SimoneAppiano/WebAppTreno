@@ -47,7 +47,7 @@
 <div>
   <form action="treni" method="post">
     <select id="select_type" name="filtro">
-      <option value="null">Tutti</option>
+      <option value="tutti">Tutti</option>
       <option value="TN">Trenord</option>
       <option value="FR">Frecciarossa</option>
     </select>
@@ -70,6 +70,7 @@
  String tipo = "";
  
  for (TrenoDTO t : listaTreni){ 
+	 if (t.getUtente().getUsername().equals(request.getSession().getAttribute("username"))){
 	 if (t.getTipo() != null && t.getTipo().equals("TN")){
 		 locomotiva = "./img/locomotiva.png";
 		 passeggeri = "./img/passeggeri.png";
@@ -85,7 +86,9 @@
 		 tipo = "Frecciarossa";
 	 } 
 	 
-	if (t.getUtente().getUsername().equals(request.getSession().getAttribute("username")) && (t.getTipo().equals(filtro)) || filtro == null) {%>
+	 if((t.getTipo().equals(filtro)) || "tutti".equals(filtro) || filtro == null) {
+	System.out.println(t.getUtente().getUsername());
+	%>
 	   <div class="scheda">
  		<h3> <%= t.getSigla() %> </h3>
 	 	<% for (int i = 0; i < t.getSigla().length(); i++) {
@@ -115,6 +118,7 @@
 </form>
 
  <% 
+	 }
 	}
 	}
 	%>
