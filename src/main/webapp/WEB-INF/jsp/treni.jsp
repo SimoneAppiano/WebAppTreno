@@ -138,6 +138,11 @@
      }%>
 </p>
 
+<form action='elimina'>
+<input class='elimina' type='submit' value='Elimina'>
+<input type='hidden' name='id' value= <%= t.getId()%> >
+</form>
+
  <% 
  }
  } 
