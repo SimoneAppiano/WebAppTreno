@@ -62,81 +62,52 @@
  List<TrenoDTO> listaTreni = (List<TrenoDTO>) request.getSession().getAttribute("listaTreni");
  String filtro = request.getParameter("filtro");
  System.out.println(filtro);
+ 
+ String locomotiva = "";
+ String passeggeri = "";
+ String ristorante = "";
+ String cargo = "";
+ String tipo = "";
+ 
  for (TrenoDTO t : listaTreni){ 
+	 if (t.getTipo() != null && t.getTipo().equals("TN")){
+		 locomotiva = "./img/locomotiva.png";
+		 passeggeri = "./img/passeggeri.png";
+		 ristorante = "./img/ristorante.png";
+		 cargo = "./img/cargo.png";
+		 tipo = "Trenord";
+		 
+	 } else if (t.getTipo() != null && t.getTipo().equals("FR")){
+		 locomotiva = "./img/locomotivaFR.png";
+		 passeggeri = "./img/passeggeriFR.png";
+		 ristorante = "./img/ristoranteFR.png";
+		 cargo = "./img/cargoFR.png";
+		 tipo = "Frecciarossa";
+	 } 
 	 
-	if (t.getUtente().getUsername().equals(request.getSession().getAttribute("username"))) {
-		if (filtro == null || filtro.equals("null") || (t.getTipo() != null && t.getTipo().equals(filtro))){%>
+	if (t.getUtente().getUsername().equals(request.getSession().getAttribute("username")) && (t.getTipo().equals(filtro)) || filtro == null) {%>
 	   <div class="scheda">
  		<h3> <%= t.getSigla() %> </h3>
-	 	<% if (t.getTipo() == null) {
-			for (int i = 0; i < t.getSigla().length(); i++) {
+	 	<% for (int i = 0; i < t.getSigla().length(); i++) {
 				switch (t.getSigla().charAt(i)) {
 				case 'H':%>
-					<img class='main-treno' src='./img/locomotivaV.png' width='150'>
+					<img class='main-treno' src=<%=locomotiva%> width='150'>
 				<%	break;
 				case 'P': %>
-					<img class='main-treno' src='./img/passeggeriV.png' width='150'>
+					<img class='main-treno' src=<%=passeggeri%> width='150'>
 				<%	break;
 				case 'R':  %>
-					<img class='main-treno' src='./img/ristoranteV.png' width='150' >
+					<img class='main-treno' src=<%=ristorante%> width='150' >
 				<% break;
 				case 'C':  %>
-					<img class='main-treno' src='./img/cargoV.png' width='150'>
+					<img class='main-treno' src=<%=cargo%> width='150'>
 				<%	break;
 				} 
 			}
-			}
-	 	if ("TN".equals(t.getTipo())) {
-			for (int i = 0; i < t.getSigla().length(); i++) {
-				switch (t.getSigla().charAt(i)) {
-			case 'H':%>
-				<img class='main-treno' src='./img/locomotiva.png' width='150'>
-			<%	break;
-			case 'P': %>
-				<img class='main-treno' src='./img/passeggeri.png' width='150'>
-			<%	break;
-			case 'R':  %>
-				<img class='main-treno' src='./img/ristorante.png' width='150' >
-			<% break;
-			case 'C':  %>
-				<img class='main-treno' src='./img/cargo.png' width='150'>
-			<%	break;
-			} 
-		}
-		}
-		else if ("FR".equals(t.getTipo())) {
-			for (int i = 0; i < t.getSigla().length(); i++) {
-		
-			switch (t.getSigla().charAt(i)) {
-			case 'H':%>
-				<img class='main-treno' src='./img/locomotivaFR.png' width='150'>
-			<%	break;
-			case 'P': %>
-				<img class='main-treno' src='./img/passeggeriFR.png' width='150'>
-			<%	break;
-			case 'R':  %>
-				<img class='main-treno' src='./img/ristoranteFR.png' width='150' >
-			<% break;
-			case 'C':  %>
-				<img class='main-treno' src='./img/cargoFR.png' width='150'>
-			<%	break;
-			}	
-		}
-		}	
- 	
  	%> 
  	
  	<p>Peso: <%= t.getPeso() %> </p>
-<p>Tipo: 
-    <% if (t.getTipo() == null) { %> 
-        Non specificato
-    <% } else if ("FR".equals(t.getTipo())) { %> 
-        Frecciarossa
-    <% } else if ("TN".equals(t.getTipo())) { %>
-        Trenord
-    <%
-     }%>
-</p>
+<p>Tipo: <%= tipo %></p>
 
 <form action='elimina'>
 <input class='elimina' type='submit' value='Elimina'>
@@ -144,9 +115,9 @@
 </form>
 
  <% 
- }
- } 
- }%>
+	}
+	}
+	%>
 
 
 
