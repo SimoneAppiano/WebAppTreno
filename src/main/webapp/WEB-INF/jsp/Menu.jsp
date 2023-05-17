@@ -43,7 +43,14 @@ request.getSession().getAttribute("listaTreni");
 
 </div>  
 
-  
+<div class="homepage">
+	<img src="./img/crea.png" width="600px" />	
+</div>  
+<div class="homepage">
+	<h2>Scegli come modellare il tuo treno!</h2>
+	<p>Decidi tu il modello, la tipologia e il numero dei vagoni!</p>
+	<p>Sarà Frecciarossa o Trenord? Cargo o Passeggeri? Ha la carrozza ristorante? <a id="link_treno" href="Home">Fai il login</a> e <a id="link_treno" href="CreazioneTreno">Personalizza il tuo treno!</a></p> 
+</div>
 
 
 
@@ -52,9 +59,10 @@ request.getSession().getAttribute("listaTreni");
 <a hidden = "true">
 <input id="flag" name="prova" value="${flag}"></input>
 </a>
-<h1>Ultimi 5 treni creati dai nostri utenti</h1>
+<p class="homepage_title"><strong>Sei indeciso? Ecco gli ultimi 5 treni creati dai nostri utenti!</strong></p>
+<div class="lista_treni">
 ${trenoSigla}
-
+</div>
 <script>
 function myFunction() {
   var x = document.getElementById("myTopnav");

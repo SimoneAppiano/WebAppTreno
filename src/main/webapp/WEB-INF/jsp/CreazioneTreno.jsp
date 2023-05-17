@@ -38,7 +38,7 @@ include file="Style.css"%>
 		<form method="GET" action="./costruisci">
 
 			<input type="text" name="sigla" style="text-transform:uppercase">
-			<select name="tipo">
+			<select id="select_type" name="tipo">
                 <option  value="TN"> Trenord</option>
                 <option  value="FR">Frecciarossa</option>
                </select>

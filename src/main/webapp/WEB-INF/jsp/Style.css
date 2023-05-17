@@ -1,4 +1,7 @@
 @charset "ISO-8859-1";
+*{
+	font-family:futura;
+}
 
 body{
 	margin: 0;
@@ -267,7 +270,74 @@ button:hover{
 	display: flex;
   justify-content: space-between;
 }
-
 /* --------*/
+#select_type{
+
+	display: flex;
+	justify-content: center;
+	margin-left:auto;
+	margin-right:auto;
+	min-height: 30px;
+	border-radius:10px;
+}
+
+h1{
+	text-align:center;
+}
+
+.lista_treni{
+	margin: 50px;
+}
 
 
+.elimina{
+	width: 60%;
+	height: 40px;
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+	color: #fff;
+	background: #573b8a;
+	font-size: 1em;
+	font-weight: bold;
+	margin-top: 20px;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+	cursor: pointer;
+}
+.elimina:hover{
+	background: #6d44b8;
+}
+
+.homepage{
+	text-align:center;
+	margin: 30px;
+}
+
+.homepage p{
+	font-size:20px;
+}
+
+.homepage>a, a:visited{
+	text-decoration: none;
+}
+
+.homepage a:hover, a:visited{
+	text-decoration: none;
+}
+
+#link_treno{
+	text-decoration: none;
+	color:yellow;
+}
+
+#link_treno:hover{
+	background:grey;
+}
+
+.homepage_title{
+	margin:50px;
+	font-size:18px;
+}
