@@ -120,6 +120,7 @@ public class HomeController {
 	@RequestMapping(path = "/costruisci")
 	public String costruisci(@WebParam String sigla, Model model, HttpServletRequest request, @WebParam String tipo) throws IOException {		String username = (String) request.getSession().getAttribute("username");
 		Errori e1 = new Errori(sigla);
+		
 		try {
 			TrenoBuilder trenoTN = new TNBuilder();
 			TrenoBuilder trenoFR = new FRBuilder();
@@ -129,18 +130,18 @@ public class HomeController {
 			} else if (tipo.equals("FR")) {
 				treno = trenoFR.costruisci(sigla);				
 			}
-			System.out.println(treno);
 			List<Carrozza> v= new LinkedList<Carrozza>();
 			v.add(treno.getLocomotiva());
 			v.addAll(treno.getListaVagoni());
+			UtenteDao utenteDAO = UtenteDaoImpl.getInstance();		
 			TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
-			UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
+			request.getSession().setAttribute("tipo", tipo);
+			request.getSession().setAttribute("listaTreni", trenoDAO.listaTreni());
 			trenoDAO.add(treno, utenteDAO.findByUsername(username), tipo);
 			String locomotiva;
 			String passeggeri;
 			String ristorante;
 			String cargo;	
-			System.out.println(tipo);
 			List<String> trenoSigla = new LinkedList<String>();
 			if (tipo.equals("TN")) {
 				System.out.println(tipo);
