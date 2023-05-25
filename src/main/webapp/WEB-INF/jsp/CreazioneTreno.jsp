@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	    <%@page import="java.util.*"%>
+<%@page import="java.util.Arrays"%>
+<%@page import="dto.TrenoDTO"%>
+<%@page import="dao.TrenoDao"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,6 +80,8 @@ include file="Style.css"%>
 			</h3>
 			<p>Peso del treno: ${peso}T</p>
 			${trenoSigla}
+			<div>
+</div>
 		</div>
 
 </body>
