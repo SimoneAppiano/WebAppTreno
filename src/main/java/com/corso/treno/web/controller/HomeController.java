@@ -184,6 +184,10 @@ public class HomeController {
 	@RequestMapping(path = "/treni")
 	public String treni(Model model, HttpServletRequest request) {
 		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
+		UtenteDao utenteDAO = UtenteDaoImpl.getInstance();
+		String username = (String) request.getSession().getAttribute("username");
+		request.getSession().setAttribute("admin", utenteDAO.findByUsername(username).getAdmin());
+		request.getSession().setAttribute("ListaUtenti", utenteDAO.listaUtenti());
 		request.getSession().setAttribute("listaTreni", trenoDAO.listaTreni());
 		request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
 		return "treni";

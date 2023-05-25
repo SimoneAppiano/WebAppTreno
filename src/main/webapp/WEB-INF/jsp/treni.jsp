@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.util.List"%>
 <%@page import="java.util.Arrays"%>
-<%@page import="dto.TrenoDTO"%>
-<%@page import="dao.TrenoDao"%>
+<%@page import="dto.*"%>
+<%@page import="dao.*"%>
 <!DOCTYPE html>
 <html>
 
@@ -62,7 +62,7 @@
  List<TrenoDTO> listaTreni = (List<TrenoDTO>) request.getSession().getAttribute("listaTreni");
  String filtro = request.getParameter("filtro");
  System.out.println(filtro);
- 
+ Boolean flag = true;
  String locomotiva = "";
  String passeggeri = "";
  String ristorante = "";
@@ -70,7 +70,58 @@
  String tipo = "";
  
  for (TrenoDTO t : listaTreni){ 
-	 if (t.getUtente().getUsername().equals(request.getSession().getAttribute("username"))){
+	 if ((Boolean) request.getSession().getAttribute("admin") != null){
+		 flag = false;
+		 if (t.getTipo() != null && t.getTipo().equals("TN")){
+			 locomotiva = "./img/locomotiva.png";
+			 passeggeri = "./img/passeggeri.png";
+			 ristorante = "./img/ristorante.png";
+			 cargo = "./img/cargo.png";
+			 tipo = "Trenord";
+			 
+		 } else if (t.getTipo() != null && t.getTipo().equals("FR")){
+			 locomotiva = "./img/locomotivaFR.png";
+			 passeggeri = "./img/passeggeriFR.png";
+			 ristorante = "./img/ristoranteFR.png";
+			 cargo = "./img/cargoFR.png";
+			 tipo = "Frecciarossa";
+		 } 
+		 
+		 if((t.getTipo().equals(filtro)) || "tutti".equals(filtro) || filtro == null) {
+		System.out.println(t.getUtente().getUsername());
+		%>
+		   <div class="scheda">
+	 		<h3> <%= t.getSigla() %> </h3>
+		 	<% for (int i = 0; i < t.getSigla().length(); i++) {
+					switch (t.getSigla().charAt(i)) {
+					case 'H':%>
+						<img class='main-treno' src=<%=locomotiva%> width='150'>
+					<%	break;
+					case 'P': %>
+						<img class='main-treno' src=<%=passeggeri%> width='150'>
+					<%	break;
+					case 'R':  %>
+						<img class='main-treno' src=<%=ristorante%> width='150' >
+					<% break;
+					case 'C':  %>
+						<img class='main-treno' src=<%=cargo%> width='150'>
+					<%	break;
+					} 
+				}
+	 	%> 
+	 	
+	 	<p>Peso: <%= t.getPeso() %> </p>
+	<p>Tipo: <%= tipo %></p>
+
+	<form action='elimina'>
+	<input class='elimina' type='submit' value='Elimina'>
+	<input type='hidden' name='id' value= <%= t.getId()%> >
+	</form>
+
+	 <% 
+		 }
+	 }
+	 if (t.getUtente().getUsername().equals(request.getSession().getAttribute("username")) && flag){
 	 if (t.getTipo() != null && t.getTipo().equals("TN")){
 		 locomotiva = "./img/locomotiva.png";
 		 passeggeri = "./img/passeggeri.png";
