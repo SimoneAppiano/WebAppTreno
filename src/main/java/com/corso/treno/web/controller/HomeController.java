@@ -185,6 +185,7 @@ public class HomeController {
 	public String treni(Model model, HttpServletRequest request) {
 		TrenoDao trenoDAO = TrenoDaoImpl.getInstance();
 		request.getSession().setAttribute("listaTreni", trenoDAO.listaTreni());
+		request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
 		return "treni";
 	}
 	
