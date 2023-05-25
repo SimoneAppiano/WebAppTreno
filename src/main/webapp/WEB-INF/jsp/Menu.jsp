@@ -87,8 +87,8 @@ request.getSession().getAttribute("listaTreni");
 				for (int i = 0; i < t.getSigla().length(); i++) {
 					switch (t.getSigla().toUpperCase().charAt(i)) {
 					case 'H':
-						%><p id='lt'> <%=t.getSigla()%> </p>;
-						<br>;
+						%><p id='lt'> <%=t.getSigla()%> </p>
+						<br>
 						<img class='main-treno' src=<%=locomotiva%> width='150'>
 						<%;
 						break;
